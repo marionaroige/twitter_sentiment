@@ -58,6 +58,7 @@ rt <- search_tweets(
 rt2 <- search_tweets('CoreLogic NZ', n = 18000, include_rts = FALSE, token = token)
 rt3 <- search_tweets('corelogic NEW Zealand', n = 18000, include_rts = FALSE, token = token)
 rt4 <- search_tweets('#nzpol housing', n = 18000, include_rts = FALSE, token = token)
+rt5 <- search_tweets('kainga ora', n = 18000, include_rts = FALSE, token = token)
 
 ```
 
@@ -65,8 +66,12 @@ rt4 <- search_tweets('#nzpol housing', n = 18000, include_rts = FALSE, token = t
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r plot_ts}
+
+ts_plot(rt, 'days') 
+ts_plot(rt2,'days')
+ts_plot(rt3,'days')
+ts_plot(rt4, 'days')
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
