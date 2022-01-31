@@ -30,16 +30,35 @@ library(magrittr)
 library(tidyverse)
 library(janeaustenr)
 library(widyr)
+
+library(httpuv)
+library(rtweet)
 ```
 
-## R Markdown
+## Gather Twitter data
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+https://rpubs.com/shinhaenglee/692598
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r authorise}
 
-```{r cars}
-summary(cars)
+api_key = "XsHAUOWl8A9XFDoZrXIG1tjRi"
+api_secret = "xhbxZ26y5oGw5018AY2vuaxAVi08rcYDEWhs4uJOpJZjDvQFGX"
+
+## authentication via web browser
+token <- create_token(
+  app = "sentiment",
+  consumer_key = api_key, 
+  consumer_secret = api_secret,
+  set_renv = FALSE
+  ) 
+token
+
+rt <- search_tweets(
+  "New Zealand housing", n = 18000, include_rts = FALSE, token = token)
+rt2 <- search_tweets('CoreLogic NZ', n = 18000, include_rts = FALSE, token = token)
+rt3 <- search_tweets('corelogic NEW Zealand', n = 18000, include_rts = FALSE, token = token)
+rt4 <- search_tweets('#nzpol housing', n = 18000, include_rts = FALSE, token = token)
+
 ```
 
 ## Including Plots
